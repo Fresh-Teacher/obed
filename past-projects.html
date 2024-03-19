@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+
+<head>
+    <link href="graphics/favicon.ico" rel="shortcut icon" type="image/icon">
+    <link rel="publisher" href="https://plus.google.com/u/0/113257529672159926348">
+    <link rel="author" href="https://plus.google.com/u/0/113257529672159926348">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Green Village Children Center - Current Projects</title>
+
+    <link rel="stylesheet" href="support/style.css" type="text/css" media="screen" />
+    <script src="js/jquery-1.3.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="js/paypal-button.min.js" type="text/javascript"></script>
+
+    <!-- start sroller -->
+    <style type="text/css">
+        #pscroller1 {
+            width: 290px;
+            height: 120px;
+            border: 1px solid #333;
+            padding: 5px;
+            background-color: #fff;
+        }
+
+        }
+
+        .style2 {
+            color: #EEFAD6
+        }
+    </style>
+
+    <script type="text/javascript">
+        var pausecontent = new Array()
+        pausecontent[0] = '<B><a href="">HEADING HEADDS</a></B><br /><img src="graphics/T.jpg" style="width: 292px;" />'
+        pausecontent[1] = '<B><a href="#">Volunteer opportunties:</a></B><br /><b>pliz come and volunteer in Sed at elit non es. <br>are u a doctor, carpeter, teacher, or someone with a skill, we welcome you to come and team with us<br>Come and be a blessing to children Today!</b>'
+        pausecontent[2] = '<B><a href="#">HOW CAN YOU HELP!</a></B><br />Anyone who has time, energy, expertise,contacts, ideas or money can offer to help us.We are seeking matched funding and donations to reach our target.<BR><BR><I>Please contact Sed at elit non es  by telephone or in writing if you are able to help in any way.</I>'
+        pausecontent[3] = '<B><a href="#" target="_new">Our school</a></B><br />If you are able to make a financial donation, please:<BR>-Send us a cheque made payable to ‘<U>Care for child Today</U>’.<BR>- Donate a regular amount each month via standing order.  Please contact us for a form.'
+    </script>
+
+    <script type="text/javascript">
+        function pausescroller(content, divId, divClass, delay) {
+            this.content = content //message array content
+            this.tickerid = divId //ID of ticker div to display information
+            this.delay = delay //Delay between msg change, in miliseconds.
+            this.mouseoverBol = 0 //Boolean to indicate whether mouse is currently over scroller (and pause it if it is)
+            this.hiddendivpointer = 1 //index of message array for hidden div
+            document.write('<div id="' + divId + '" class="' + divClass + '" style="position: relative; overflow: hidden"><div class="innerDiv" style="position: absolute; width: 100%" id="' + divId + '1">' + content[0] + '</div><div class="innerDiv" style="position: absolute; width: 100%; visibility: hidden" id="' + divId + '2">' + content[1] + '</div></div>')
+            var scrollerinstance = this
+            if (window.addEventListener) //run onload in DOM2 browsers
+                window.addEventListener("load", function() {
+                    scrollerinstance.initialize()
+                }, false)
+            else if (window.attachEvent) //run onload in IE5.5+
+                window.attachEvent("onload", function() {
+                    scrollerinstance.initialize()
+                })
+            else if (document.getElementById) //if legacy DOM browsers, just start scroller after 0.5 sec
+                setTimeout(function() {
+                    scrollerinstance.initialize()
+                }, 500)
+        }
+
+        // -------------------------------------------------------------------
+        // initialize()- Initialize scroller method.
+        // -Get div objects, set initial positions, start up down animation
+        // -------------------------------------------------------------------
+
+        pausescroller.prototype.initialize = function() {
+            this.tickerdiv = document.getElementById(this.tickerid)
+            this.visiblediv = document.getElementById(this.tickerid + "1")
+            this.hiddendiv = document.getElementById(this.tickerid + "2")
+            this.visibledivtop = parseInt(pausescroller.getCSSpadding(this.tickerdiv))
+            //set width of inner DIVs to outer DIV's width minus padding (padding assumed to be top padding x 2)
+            this.visiblediv.style.width = this.hiddendiv.style.width = this.tickerdiv.offsetWidth - (this.visibledivtop * 2) + "px"
+            this.getinline(this.visiblediv, this.hiddendiv)
+            this.hiddendiv.style.visibility = "visible"
+            var scrollerinstance = this
+            document.getElementById(this.tickerid).onmouseover = function() {
+                scrollerinstance.mouseoverBol = 1
+            }
+            document.getElementById(this.tickerid).onmouseout = function() {
+                scrollerinstance.mouseoverBol = 0
+            }
+            if (window.attachEvent) //Clean up loose references in IE
+                window.attachEvent("onunload", function() {
+                    scrollerinstance.tickerdiv.onmouseover = scrollerinstance.tickerdiv.onmouseout = null
+                })
+            setTimeout(function() {
+                scrollerinstance.animateup()
+            }, this.delay)
+        }
+
+
+        // -------------------------------------------------------------------
+        // animateup()- Move the two inner divs of the scroller up and in sync
+        // -------------------------------------------------------------------
+
+        pausescroller.prototype.animateup = function() {
+            var scrollerinstance = this
+            if (parseInt(this.hiddendiv.style.top) > (this.visibledivtop + 5)) {
+                this.visiblediv.style.top = parseInt(this.visiblediv.style.top) - 5 + "px"
+                this.hiddendiv.style.top = parseInt(this.hiddendiv.style.top) - 5 + "px"
+                setTimeout(function() {
+                    scrollerinstance.animateup()
+                }, 50)
+            } else {
+                this.getinline(this.hiddendiv, this.visiblediv)
+                this.swapdivs()
+                setTimeout(function() {
+                    scrollerinstance.setmessage()
+                }, this.delay)
+            }
+        }
+
+        // -------------------------------------------------------------------
+        // swapdivs()- Swap between which is the visible and which is the hidden div
+        // -------------------------------------------------------------------
+
+        pausescroller.prototype.swapdivs = function() {
+            var tempcontainer = this.visiblediv
+            this.visiblediv = this.hiddendiv
+            this.hiddendiv = tempcontainer
+        }
+
+        pausescroller.prototype.getinline = function(div1, div2) {
+            div1.style.top = this.visibledivtop + "px"
+            div2.style.top = Math.max(div1.parentNode.offsetHeight, div1.offsetHeight) + "px"
+        }
+
+        // -------------------------------------------------------------------
+        // setmessage()- Populate the hidden div with the next message before it's visible
+        // -------------------------------------------------------------------
+
+        pausescroller.prototype.setmessage = function() {
+            var scrollerinstance = this
+            if (this.mouseoverBol == 1) //if mouse is currently over scoller, do nothing (pause it)
+                setTimeout(function() {
+                    scrollerinstance.setmessage()
+                }, 100)
+            else {
+                var i = this.hiddendivpointer
+                var ceiling = this.content.length
+                this.hiddendivpointer = (i + 1 > ceiling - 1) ? 0 : i + 1
+                this.hiddendiv.innerHTML = this.content[this.hiddendivpointer]
+                this.animateup()
+            }
+        }
+
+        pausescroller.getCSSpadding = function(tickerobj) { //get CSS padding value, if any
+            if (tickerobj.currentStyle)
+                return tickerobj.currentStyle["paddingTop"]
+            else if (window.getComputedStyle) //if DOM2
+                return window.getComputedStyle(tickerobj, "").getPropertyValue("padding-top")
+            else
+                return 0
+        }
+    </script>
+
+    <!-- end scroller -->
+
+    <!-- Language Bar -->
+    <!--<script type="text/javascript">
+	$(document).ready(function(){
+		$('#languageContainer').html('<span>Deutsch:</span><select style="font-size: 16px;" name="language" id="language"><option value="0"></option><option value="d">Deutsch</option></select>');
+
+		$('#language').change(function(){
+			if($(this).val()=='d'){
+				window.location ='deutsch/';
+				
+			}
+		})
+	})
+</script>-->
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div style="float: right; margin-top: 3px; font-size: 16px; color: #a91b33;" id="languageContainer"><img style="margin-right: 5px;" src="graphics/deutsch.png" /><a href="deutsch/index.php?st=1">Deutsch</a></div>
+    <!--This is where language drop down goes on document ready-->
+    <div style="clear: right;"></div>
+    <div id="wrap">
+        <div id="header"><img src="graphics/header.jpg" />
+
+        </div>
+        <div id="navbar">
+
+            <!--<div id="navbarleft">-->
+            <ul id="nav">
+                <li><a href="home" class="">HOME</a></li>
+                <li><a href="about-us" class="">ABOUT US</a></li>
+                <!--<li><a href="about_us.php" >ABOUT US</a>-->
+                <!--<ul class='children'>
+	<li><a href="page.html" >Our Mission</a></li>
+	<li><a href="page.html" title="History/Background">Our History</a></li>
+    <li><a href="page.html">Where We Work</a></li>
+	<li><a href="page.html" >Why it was Started</a></li>
+    <li><a href="page.html" >Accountability</a></li>
+     <li><a href="page.html" >Board of Directors</a></li>
+</ul>-->
+                <!--<li><a href="#" title="What we do">PROJECTS</a>
+<ul class='children'>
+	<li><a href="page.html" >Education and early childhood development</a></li>
+	<li><a href="page.html">Community Health promotion</a></li>
+	<li><a href="page.html">Community empowerment</a></li>
+	  <li><a href="page.html">Tree Planting</a></li>
+</ul>
+</li>-->
+
+                <li><a href="sponsor-a-child" class="">SPONSOR A CHILD</a>
+                    <ul class='children'>
+                        <li><a href="sponsored-children">Sponsored Children</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#" class="active_link">PROJECTS</a>
+                    <ul class='children'>
+                        <li><a href="current-projects">Current Projects</a></li>
+                        <li><a href="past-projects">Past Projects</a></li>
+                        <li><a href="future-projects">Future Projects</a></li>
+                    </ul>
+                </li>
+
+
+
+                <li><a href="photo-gallery" class="">PHOTO GALLERY</a></li>
+                <li><a href="contact-us" class="">CONTACT US</a></li>
+            </ul>
+            <!--</div>-->
+
+            <!--<div id="navbarright">
+		
+		
+		<form action="http://www.google.com" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-8033448189044480:9811003868" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="25"/>
+    <input type="submit" name="sa" value="Search" />
+  </div>
+</form>
+
+<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+
+	</div>-->
+
+
+        </div>
+
+        <div style="clear:both;"></div>
+        <div style="background-color: #FF9900; padding: 5px;"><span style="width: 360px; float: left; margin-top: 5px; color: #333;font-size:14px;font-weight:bold;">$25 per month will provide the following to a child: </span><span style="width: 450px; float: left; margin-top: 5px; color: #333;font-size:14px;"><marquee behavior="scroll" direction="left" scrollamount="4"> Teachers' salaries, school uniform, scholastic materials, Water bills, 
+transport, shoes, socks, breakfast & Lunch, a desk, medical services and sanitary pads for girls.</marquee></span><span><a id="donate_link" href="donate">Donate</a></span>
+            <div style="clear: both;"></div>
+        </div>
+
+        <!--<div id="subnavbar">
+
+	<ul id="subnav">
+               	<li class="cat-item cat-item-3"><a href="#"  style="text-decoration:none; color:#FFFFFF">MORE LINKS:</a></li>
+      <li style="width:100PX;"><a href="page.html">Volunteers</a></li>
+	<li style="width:150PX;"><a href="page.html">Projects</a></li>
+	<li ><a href="page.html" title="Facilities">Facilities</a></li>
+    	<li ><a href="page.html">ICT & Research</a></li>
+
+	</ul>
+	
+</div>-->
+
+        <div style="clear:both;"></div>
+        <div id="content">
+
+            <div id="homepage">
+
+
+                <div id="homepagetop" style=" background-image:url(graphics/titlebg.gif);">
+
+                    <div class="featuredtop">
+
+                        <div id="featured" style="color:000"><strong>
+	
+PAST PROJECTS</strong></div>
+                    </div>
+
+                </div>
+
+
+                <div id="homepageleft" style="width:560px;">
+
+                    <div class="hpfeatured" style="width:588px;">
+
+
+                        <!--<p style="text-align:justify"><img src="graphics/volunteer.jpg" /><br>-->
+                        <h3 style="background-color:#FF9900;">1. Construction of the water project</h3>
+                        <p>This was done in collaboration with the local government, district water experts and Local council area members. The residents have started using the water reservoir and no longer have to move long distances to access the water
+                            sources, this facility currently serves more than 1000 residents.</p>
+
+                        <br/>
+                        <p>This water project was donated by Rev, Fr Johnston Martin in 2013, now over 60 families have now access to clean water.</p><br/>
+
+                        <img src="graphics/water.png" />
+
+                        <br/><br/><br/>
+                        <h3 style="background-color:#FF9900;">2. Construction of one classroom</h3>
+                        <br/><img src="graphics/class.png" /><br/><br/><br/>
+
+                        <h3 style="background-color:#FF9900;">3. Piggery project</h3>
+                        <img src="graphics/piggery1.jpg" style="width: 588px;" />
+                        <br/><br/>
+                        <p style="color: green;padding: 5px;">This piggery project was donated by Cathleen Devraj, the piglets will be given to poor family to boost their income.</p><br />
+                        <img src="graphics/piggery2.jpg" style="width: 588px;" />
+
+                        <p style="text-align:justify">
+                            <p style="text-align:justify">
+                                <p style="text-align:justify"><br />
+                                    <br />
+
+                    </div>
+                </div>
+
+                <div id="homepageright"></div>
+
+            </div>
+
+            <!-- begin sidebar -->
+
+            <div id="sidebar">
+
+                <ul id="sidebarwidgeted">
+
+                    <li id="text-405101421" class="widget widget_text">
+
+                        <!--<h2 class="widgettitle" style="background-color:#FF9900;"><a href="page.html" style="color:#FFFFFF">WHAT $25 CAN DO FOR A CHILD</h2>-->
+
+                        <div class="textwidget" style="text-align: center;font-size:12px;">
+                            <a href="volunteer.php"><!--<img src="graphics/sponsor-a-child-today.jpg" border="0" />-->VOLUNTEER</a>&nbsp; | &nbsp;<a href="contact_us.php?p=1"><!--<img src="graphics/sponsor-a-child-today.jpg" border="0" />-->PARTNER WITH US</a>&nbsp;
+                            | &nbsp;<a href="donate.php"><!--<img src="graphics/sponsor-a-child-today.jpg" border="0" />-->DONATE</a></div>
+                    </li>
+
+
+                    <li id="global-translator" class="widget widget_global_translator">
+                        <h2 class="widgettitle" style="background-color:#669922;"> FEATURED CHILD | <a href="sponsor_a_child.php" style="color:#FFFFFF; text-transform: none;">See all Children</a></h2>
+
+                        <!--FLAG_BAR_BEGIN-->
+                        <a href="child_information.php?cid=170"><img src="graphics/children_images/170_DIAN SENABULYA.jpg" style="width: 300px;" border="0"/></a>
+                        <p style="font-size: 14px; margin-top: 5px;">DIAN SENABULYA , 13</p>
+                        <!--FLAG_BAR_END-->
+                    </li>
+                    <!--<li id="text-371685491" class="widget widget_text">
+<div class="textwidget">
+<h2 class="widgettitle" style="background-color:#669922;"> NEWS</h2>		
+<script type="text/javascript">
+
+
+new pausescroller(pausecontent, "pscroller1", "someclass", 10000)
+
+</script>
+</div></li>-->
+
+                    <li id="global-translator" class="widget widget_global_translator">
+                        <!--<h2 class="widgettitle" style="background-color:#669922;"> FEATURED CHILD | <a href="children.php" style="color:#FFFFFF; text-transform: none;">See all Children</a></h2>-->
+
+                        <!--FLAG_BAR_BEGIN-->
+                        <a href="proposed_school.php"><img src="graphics/proposed_school_icon.png" border="0"/></a>
+
+                        <!--FLAG_BAR_END-->
+                    </li>
+
+                    <li id="global-translator" class="widget widget_global_translator">
+                        <h2 class="widgettitle" style="background-color:#669922;"><a href="https://www.youtube.com/channel/UCYEk_3q3WH7mc0ynleseICA" style="color:#FFFFFF;" target="_blank">VIDEOS</a></h2>
+
+                        <!--FLAG_BAR_BEGIN-->
+                        <iframe width="300" height="230" src="https://www.youtube.com/embed/Nz9meu_wRPM" frameborder="0" allowfullscreen></iframe><br/><br/>
+
+                        <iframe width="300" height="230" src="https://www.youtube.com/embed/m31byl8TxE8" frameborder="0" allowfullscreen></iframe>
+
+                        <!--FLAG_BAR_END-->
+                    </li>
+
+                    <li id="global-translator" class="widget widget_global_translator">
+                        <!--<h2 class="widgettitle" style="background-color:#669922;"> FEATURED CHILD | <a href="children.php" style="color:#FFFFFF; text-transform: none;">See all Children</a></h2>-->
+
+                        <!--FLAG_BAR_BEGIN-->
+                        <a href="testimonies"><img src="graphics/testimonies.png" border="0"/></a>
+
+                        <!--FLAG_BAR_END-->
+                    </li>
+
+
+                    <li id="text-405101423" class="widget widget_text">
+                        <h2 class="widgettitle" style="background-color:#669922;"> FOLLOW US:</h2>
+                        <div class="textwidget">
+                            <div class="fb-page" data-href="https://www.facebook.com/GreenVillageChildrenCenter" data-width="307" data-height="200" data-hide-cover="true" data-show-facepile="true" data-show-posts="false">
+                                <div class="fb-xfbml-parse-ignore">
+                                    <blockquote cite="https://www.facebook.com/GreenVillageChildrenCenter"><a href="https://www.facebook.com/GreenVillageChildrenCenter">Green Village Children Center</a></blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <div class="fw_tabs_tabs_surround" id="fw_tabs_tabs_surround_1">
+                        <div id="fw_tabs_tabdisplay_x_1" class="fw_tabs_tabdisplay first">
+                            <ul class="tabbed_sidebar"></ul>
+                            <div>&nbsp;</div>
+                        </div>
+                    </div>
+                </ul>
+
+                <!-- begin l_sidebar -->
+
+                <div id="l_sidebar">
+                    <ul id="l_sidebarwidgeted">
+
+
+
+
+
+                    </ul>
+
+                </div>
+
+                <!-- end l_sidebar -->
+                <!-- begin r_sidebar -->
+
+                <div id="r_sidebar">
+
+                    <ul id="r_sidebarwidgeted">
+
+
+
+
+
+
+                    </ul>
+
+                </div>
+
+                <!-- end r_sidebar -->
+            </div>
+
+            <!-- end sidebar -->
+        </div>
+
+        <!-- The main column ends  -->
+
+        <!-- begin footer -->
+
+        <div style="clear:both;"></div>
+
+        <div id="footer">
+
+            <p>Copyright @
+                <script type="text/javascript">
+                    var mdate = new Date();
+                    document.write(mdate.getFullYear());
+                </script>
+                Green Village Children Center | <span><a href="contact_us.php" style="color:#FFF; font-weight:bold; padding-right:4px;">Contact Us</a></span> | <span><a href="terms_and_conditions.php" style="color:#FFF; font-weight:bold; padding-right:4px;" >Terms and Conditions</a></span>                | <span><a href="signin.php" style="color:#FFF; font-weight:bold; padding-right:4px;" target="_blank" >Admin</a></span> | <span><a href="http://greenvillagechildrencenter.org/webmail/" target="_blank" style="color:#FFF; font-weight:bold; padding-right:4px;" >Webmail</a></span>
+
+                <span style="float:right">
+    Developed by  <a href="http://safari256.com" target="_blank" style="color:#FFF; font-weight:bold; padding-right:4px;" >Safari256</a></span></p>
+
+        </div>
+
+        <div id="wp-admin-bar">
+            <div class="padder"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
