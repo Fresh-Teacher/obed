@@ -1,0 +1,1513 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+
+<head>
+    <link href="graphics/favicon.ico" rel="shortcut icon" type="image/icon">
+    <link rel="publisher" href="https://plus.google.com/u/0/113257529672159926348">
+    <link rel="author" href="https://plus.google.com/u/0/113257529672159926348">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Green Village Children Center - Photo Gallery</title>
+
+    <link rel="stylesheet" href="support/style.css" type="text/css" media="screen" />
+    <script src="js/jquery-1.3.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="js/paypal-button.min.js" type="text/javascript"></script>
+
+    <!-- start sroller -->
+    <style type="text/css">
+        #pscroller1 {
+            width: 290px;
+            height: 120px;
+            border: 1px solid #333;
+            padding: 5px;
+            background-color: #fff;
+        }
+
+        }
+
+        .style2 {
+            color: #EEFAD6
+        }
+    </style>
+
+    <script type="text/javascript">
+        var pausecontent = new Array()
+        pausecontent[0] = '<B><a href="">HEADING HEADDS</a></B><br /><img src="graphics/T.jpg" style="width: 292px;" />'
+        pausecontent[1] = '<B><a href="#">Volunteer opportunties:</a></B><br /><b>pliz come and volunteer in Sed at elit non es. <br>are u a doctor, carpeter, teacher, or someone with a skill, we welcome you to come and team with us<br>Come and be a blessing to children Today!</b>'
+        pausecontent[2] = '<B><a href="#">HOW CAN YOU HELP!</a></B><br />Anyone who has time, energy, expertise,contacts, ideas or money can offer to help us.We are seeking matched funding and donations to reach our target.<BR><BR><I>Please contact Sed at elit non es  by telephone or in writing if you are able to help in any way.</I>'
+        pausecontent[3] = '<B><a href="#" target="_new">Our school</a></B><br />If you are able to make a financial donation, please:<BR>-Send us a cheque made payable to ‘<U>Care for child Today</U>’.<BR>- Donate a regular amount each month via standing order.  Please contact us for a form.'
+    </script>
+
+    <script type="text/javascript">
+        function pausescroller(content, divId, divClass, delay) {
+            this.content = content //message array content
+            this.tickerid = divId //ID of ticker div to display information
+            this.delay = delay //Delay between msg change, in miliseconds.
+            this.mouseoverBol = 0 //Boolean to indicate whether mouse is currently over scroller (and pause it if it is)
+            this.hiddendivpointer = 1 //index of message array for hidden div
+            document.write('<div id="' + divId + '" class="' + divClass + '" style="position: relative; overflow: hidden"><div class="innerDiv" style="position: absolute; width: 100%" id="' + divId + '1">' + content[0] + '</div><div class="innerDiv" style="position: absolute; width: 100%; visibility: hidden" id="' + divId + '2">' + content[1] + '</div></div>')
+            var scrollerinstance = this
+            if (window.addEventListener) //run onload in DOM2 browsers
+                window.addEventListener("load", function() {
+                    scrollerinstance.initialize()
+                }, false)
+            else if (window.attachEvent) //run onload in IE5.5+
+                window.attachEvent("onload", function() {
+                    scrollerinstance.initialize()
+                })
+            else if (document.getElementById) //if legacy DOM browsers, just start scroller after 0.5 sec
+                setTimeout(function() {
+                    scrollerinstance.initialize()
+                }, 500)
+        }
+
+        // -------------------------------------------------------------------
+        // initialize()- Initialize scroller method.
+        // -Get div objects, set initial positions, start up down animation
+        // -------------------------------------------------------------------
+
+        pausescroller.prototype.initialize = function() {
+            this.tickerdiv = document.getElementById(this.tickerid)
+            this.visiblediv = document.getElementById(this.tickerid + "1")
+            this.hiddendiv = document.getElementById(this.tickerid + "2")
+            this.visibledivtop = parseInt(pausescroller.getCSSpadding(this.tickerdiv))
+            //set width of inner DIVs to outer DIV's width minus padding (padding assumed to be top padding x 2)
+            this.visiblediv.style.width = this.hiddendiv.style.width = this.tickerdiv.offsetWidth - (this.visibledivtop * 2) + "px"
+            this.getinline(this.visiblediv, this.hiddendiv)
+            this.hiddendiv.style.visibility = "visible"
+            var scrollerinstance = this
+            document.getElementById(this.tickerid).onmouseover = function() {
+                scrollerinstance.mouseoverBol = 1
+            }
+            document.getElementById(this.tickerid).onmouseout = function() {
+                scrollerinstance.mouseoverBol = 0
+            }
+            if (window.attachEvent) //Clean up loose references in IE
+                window.attachEvent("onunload", function() {
+                    scrollerinstance.tickerdiv.onmouseover = scrollerinstance.tickerdiv.onmouseout = null
+                })
+            setTimeout(function() {
+                scrollerinstance.animateup()
+            }, this.delay)
+        }
+
+
+        // -------------------------------------------------------------------
+        // animateup()- Move the two inner divs of the scroller up and in sync
+        // -------------------------------------------------------------------
+
+        pausescroller.prototype.animateup = function() {
+            var scrollerinstance = this
+            if (parseInt(this.hiddendiv.style.top) > (this.visibledivtop + 5)) {
+                this.visiblediv.style.top = parseInt(this.visiblediv.style.top) - 5 + "px"
+                this.hiddendiv.style.top = parseInt(this.hiddendiv.style.top) - 5 + "px"
+                setTimeout(function() {
+                    scrollerinstance.animateup()
+                }, 50)
+            } else {
+                this.getinline(this.hiddendiv, this.visiblediv)
+                this.swapdivs()
+                setTimeout(function() {
+                    scrollerinstance.setmessage()
+                }, this.delay)
+            }
+        }
+
+        // -------------------------------------------------------------------
+        // swapdivs()- Swap between which is the visible and which is the hidden div
+        // -------------------------------------------------------------------
+
+        pausescroller.prototype.swapdivs = function() {
+            var tempcontainer = this.visiblediv
+            this.visiblediv = this.hiddendiv
+            this.hiddendiv = tempcontainer
+        }
+
+        pausescroller.prototype.getinline = function(div1, div2) {
+            div1.style.top = this.visibledivtop + "px"
+            div2.style.top = Math.max(div1.parentNode.offsetHeight, div1.offsetHeight) + "px"
+        }
+
+        // -------------------------------------------------------------------
+        // setmessage()- Populate the hidden div with the next message before it's visible
+        // -------------------------------------------------------------------
+
+        pausescroller.prototype.setmessage = function() {
+            var scrollerinstance = this
+            if (this.mouseoverBol == 1) //if mouse is currently over scoller, do nothing (pause it)
+                setTimeout(function() {
+                    scrollerinstance.setmessage()
+                }, 100)
+            else {
+                var i = this.hiddendivpointer
+                var ceiling = this.content.length
+                this.hiddendivpointer = (i + 1 > ceiling - 1) ? 0 : i + 1
+                this.hiddendiv.innerHTML = this.content[this.hiddendivpointer]
+                this.animateup()
+            }
+        }
+
+        pausescroller.getCSSpadding = function(tickerobj) { //get CSS padding value, if any
+            if (tickerobj.currentStyle)
+                return tickerobj.currentStyle["paddingTop"]
+            else if (window.getComputedStyle) //if DOM2
+                return window.getComputedStyle(tickerobj, "").getPropertyValue("padding-top")
+            else
+                return 0
+        }
+    </script>
+
+    <!-- end scroller -->
+
+    <!-- Language Bar -->
+    <!--<script type="text/javascript">
+	$(document).ready(function(){
+		$('#languageContainer').html('<span>Deutsch:</span><select style="font-size: 16px;" name="language" id="language"><option value="0"></option><option value="d">Deutsch</option></select>');
+
+		$('#language').change(function(){
+			if($(this).val()=='d'){
+				window.location ='deutsch/';
+				
+			}
+		})
+	})
+</script>-->
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div style="float: right; margin-top: 3px; font-size: 16px; color: #a91b33;" id="languageContainer"><img style="margin-right: 5px;" src="graphics/deutsch.png" /><a href="deutsch/index.php?st=1">Deutsch</a></div>
+    <!--This is where language drop down goes on document ready-->
+    <div style="clear: right;"></div>
+    <div id="wrap">
+        <div id="header"><img src="graphics/header.jpg" />
+
+        </div>
+        <div id="navbar">
+
+            <!--<div id="navbarleft">-->
+            <ul id="nav">
+                <li><a href="home" class="">HOME</a></li>
+                <li><a href="about-us" class="">ABOUT US</a></li>
+                <!--<li><a href="about_us.php" >ABOUT US</a>-->
+                <!--<ul class='children'>
+	<li><a href="page.html" >Our Mission</a></li>
+	<li><a href="page.html" title="History/Background">Our History</a></li>
+    <li><a href="page.html">Where We Work</a></li>
+	<li><a href="page.html" >Why it was Started</a></li>
+    <li><a href="page.html" >Accountability</a></li>
+     <li><a href="page.html" >Board of Directors</a></li>
+</ul>-->
+                <!--<li><a href="#" title="What we do">PROJECTS</a>
+<ul class='children'>
+	<li><a href="page.html" >Education and early childhood development</a></li>
+	<li><a href="page.html">Community Health promotion</a></li>
+	<li><a href="page.html">Community empowerment</a></li>
+	  <li><a href="page.html">Tree Planting</a></li>
+</ul>
+</li>-->
+
+                <li><a href="sponsor-a-child" class="">SPONSOR A CHILD</a>
+                    <ul class='children'>
+                        <li><a href="sponsored-children">Sponsored Children</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#" class="">PROJECTS</a>
+                    <ul class='children'>
+                        <li><a href="current-projects">Current Projects</a></li>
+                        <li><a href="past-projects">Past Projects</a></li>
+                        <li><a href="future-projects">Future Projects</a></li>
+                    </ul>
+                </li>
+
+
+
+                <li><a href="photo-gallery" class="active_link">PHOTO GALLERY</a></li>
+                <li><a href="contact-us" class="">CONTACT US</a></li>
+            </ul>
+            <!--</div>-->
+
+            <!--<div id="navbarright">
+		
+		
+		<form action="http://www.google.com" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-8033448189044480:9811003868" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="25"/>
+    <input type="submit" name="sa" value="Search" />
+  </div>
+</form>
+
+<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+
+
+	</div>-->
+
+
+        </div>
+
+        <div style="clear:both;"></div>
+        <div style="background-color: #FF9900; padding: 5px;"><span style="width: 360px; float: left; margin-top: 5px; color: #333;font-size:14px;font-weight:bold;">$25 per month will provide the following to a child: </span><span style="width: 450px; float: left; margin-top: 5px; color: #333;font-size:14px;"><marquee behavior="scroll" direction="left" scrollamount="4"> Teachers' salaries, school uniform, scholastic materials, Water bills, 
+transport, shoes, socks, breakfast & Lunch, a desk, medical services and sanitary pads for girls.</marquee></span><span><a id="donate_link" href="donate">Donate</a></span>
+            <div style="clear: both;"></div>
+        </div>
+
+        <!--<div id="subnavbar">
+
+	<ul id="subnav">
+               	<li class="cat-item cat-item-3"><a href="#"  style="text-decoration:none; color:#FFFFFF">MORE LINKS:</a></li>
+      <li style="width:100PX;"><a href="page.html">Volunteers</a></li>
+	<li style="width:150PX;"><a href="page.html">Projects</a></li>
+	<li ><a href="page.html" title="Facilities">Facilities</a></li>
+    	<li ><a href="page.html">ICT & Research</a></li>
+
+	</ul>
+	
+</div>-->
+
+        <div style="clear:both;"></div>
+        <div id="content">
+
+            <div id="homepage">
+
+                <script src="js/jquery-1.3.2.min.js" type="text/javascript"></script>
+                <script type="text/javascript" src="js/jquery.min.js"></script>
+                <!-- shadow box declaration-->
+                <link rel="stylesheet" type="text/css" href="admin/files/shadowbox-build-3.0b/shadowbox-build-3.0b/shadowbox.css">
+                <script type="text/javascript" src="admin/files/shadowbox-build-3.0b/shadowbox-build-3.0b/shadowbox.js"></script>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $(".photos").hide();
+                        //$('.show_hide').hide()
+                        $(".album_title").click(function() {
+                            var the_class = $(this).parent().attr('id');
+                            $('.' + the_class + '').slideToggle(function() {
+                                if ($(this).parent().find('.show_hide').html() == '(show)') {
+                                    $(this).parent().find('.show_hide').html('(hide)');
+                                } else {
+                                    $(this).parent().find('.show_hide').html('(show)');
+                                }
+                            });
+                        });
+
+                        Shadowbox.init({
+                            overlayOpacity: 0.9
+                        });
+
+
+                    });
+                </script>
+
+
+                <div id="homepagetop" style=" background-image:url(graphics/titlebg.gif);">
+
+                    <div class="featuredtop">
+
+                        <div id="featured" style="color:000"><strong>
+	
+PHOTO GALLERY</strong></div>
+                    </div>
+
+                </div>
+
+
+                <div id="homepageleft" style="width:560px;">
+
+                    <div class="hpfeatured" style="width:588px;">
+
+
+
+                        <!--- START GALLERY -->
+                        <!--start-->
+                        <div id="19">
+                            <div class="album_title" style="cursor: pointer; background-color: #E0E0E0; width: 100%; padding: 5px; font-weight: bold; margin-bottom: 10px;">2020/2021 - 14 photos<span class="show_hide" style="margin-left:10px; font-size: 10px;">(show)</span>
+                                <div style="color: gray; float: right; margin-right: 4px; font-size: 10px;">6th August, 2021</div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="photos 19" style="margin: 0px 0px 20px 10px; ">
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/d6bf3115f896e61b03b9a3a181dd9f1a_Geamtanlage Stand JAN 2021.jpeg" rel="shadowbox[gallery_19];" title="2020/2021"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/d6bf3115f896e61b03b9a3a181dd9f1a_Geamtanlage Stand JAN 2021.jpeg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/024d1db8e3cf54cd5068e736b7421846_Vor der Sakristei.jpeg" rel="shadowbox[gallery_19];" title="2020/2021"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/024d1db8e3cf54cd5068e736b7421846_Vor der Sakristei.jpeg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/d13f21acf5835bf6a968d9469b9c9577_Corona Zeit.jpeg" rel="shadowbox[gallery_19];" title="2020/2021"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/d13f21acf5835bf6a968d9469b9c9577_Corona Zeit.jpeg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/475af617aba5425a303a6f05d4f90252_Campus Totale.jpeg" rel="shadowbox[gallery_19];" title="2020/2021"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/475af617aba5425a303a6f05d4f90252_Campus Totale.jpeg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/9948afd370e01ea774443b530e0c3774_Vor dem UNterricht.jpg" rel="shadowbox[gallery_19];" title="2020/2021"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/9948afd370e01ea774443b530e0c3774_Vor dem UNterricht.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/f052b1e5acaf7a588aafd7cfa349bcc6_one of our girls.jpg" rel="shadowbox[gallery_19];" title="2020/2021"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/f052b1e5acaf7a588aafd7cfa349bcc6_one of our girls.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/70e284507b0bd0ece2872bcae64e3b9e_Unterricht mit Maske NOV 2021.jpeg" rel="shadowbox[gallery_19];" title="2020/2021"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/70e284507b0bd0ece2872bcae64e3b9e_Unterricht mit Maske NOV 2021.jpeg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/4059501d24a217972a986dee5f902da1_Unterricht OKT 2020.jpeg" rel="shadowbox[gallery_19];" title="2020/2021"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/4059501d24a217972a986dee5f902da1_Unterricht OKT 2020.jpeg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/a1275ef975bb9082305d9c2b57d58805_Altar.jpg" rel="shadowbox[gallery_19];" title="2020/2021"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/a1275ef975bb9082305d9c2b57d58805_Altar.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/6f9b11c75e71f73b716f7adae87db446_truck.jpeg" rel="shadowbox[gallery_19];" title="2020/2021"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/6f9b11c75e71f73b716f7adae87db446_truck.jpeg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/ca315797474844126f7f30b7b56c75aa_Bischof Jjumba Nachfolger von Bischof Kaggwa .jpg" rel="shadowbox[gallery_19];" title="2020/2021"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/ca315797474844126f7f30b7b56c75aa_Bischof Jjumba Nachfolger von Bischof Kaggwa .jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/a0a7f1a38c99077c0121ca7a9f5e361b_Stephen in Klasse.JPG" rel="shadowbox[gallery_19];" title="2020/2021"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/a0a7f1a38c99077c0121ca7a9f5e361b_Stephen in Klasse.JPG" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/f31bca9e85cc7b529e188c5b3fc0d802_Free dancing our of joy about the day.JPG" rel="shadowbox[gallery_19];" title="2020/2021"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/f31bca9e85cc7b529e188c5b3fc0d802_Free dancing our of joy about the day.JPG" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/058da0a1a38278a71c0652fcd4f8b36a_US priest in Lwabikere 2019.jpg" rel="shadowbox[gallery_19];" title="2020/2021"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/058da0a1a38278a71c0652fcd4f8b36a_US priest in Lwabikere 2019.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                        <!--END-->
+                        <!--start-->
+                        <div id="18">
+                            <div class="album_title" style="cursor: pointer; background-color: #E0E0E0; width: 100%; padding: 5px; font-weight: bold; margin-bottom: 10px;">July 2018 - 31 photos<span class="show_hide" style="margin-left:10px; font-size: 10px;">(show)</span>
+                                <div style="color: gray; float: right; margin-right: 4px; font-size: 10px;">23rd July, 2018</div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="photos 18" style="margin: 0px 0px 20px 10px; ">
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/16f1c1ecf839c88b875223092863ce11_Bildschirmfoto 2018-07-22 um 12.09.38.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/16f1c1ecf839c88b875223092863ce11_Bildschirmfoto 2018-07-22 um 12.09.38.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/f07e1a24c72455106cc6e0b18467e354_Bildschirmfoto 2018-07-22 um 11.53.46.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/f07e1a24c72455106cc6e0b18467e354_Bildschirmfoto 2018-07-22 um 11.53.46.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/48ee11075277c8b4668b64f63e70d951_Bildschirmfoto 2018-07-22 um 11.36.37.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/48ee11075277c8b4668b64f63e70d951_Bildschirmfoto 2018-07-22 um 11.36.37.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/5a53d09103973944acd37d1c260d4ec5_Bildschirmfoto 2018-07-22 um 11.40.58.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/5a53d09103973944acd37d1c260d4ec5_Bildschirmfoto 2018-07-22 um 11.40.58.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/9e3d9df98b2097edb31511635a0176ca_Bildschirmfoto 2018-07-22 um 11.38.35.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/9e3d9df98b2097edb31511635a0176ca_Bildschirmfoto 2018-07-22 um 11.38.35.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/182870f353b1a3eff57af89030e28883_Bildschirmfoto 2018-07-22 um 11.36.03.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/182870f353b1a3eff57af89030e28883_Bildschirmfoto 2018-07-22 um 11.36.03.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/8e6a9dc3747a96c51168e0f97be5fbd5_Bildschirmfoto 2018-07-22 um 12.17.14.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/8e6a9dc3747a96c51168e0f97be5fbd5_Bildschirmfoto 2018-07-22 um 12.17.14.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/f5ec673b3bffa9659ff23b0f2d447533_Bildschirmfoto 2018-07-22 um 12.20.02.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/f5ec673b3bffa9659ff23b0f2d447533_Bildschirmfoto 2018-07-22 um 12.20.02.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/c04bcc55c75c53aa8602a467712b6d8d_St. Philomena Totale 2 2018-07-21 um 11.47.09.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/c04bcc55c75c53aa8602a467712b6d8d_St. Philomena Totale 2 2018-07-21 um 11.47.09.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/fca3d7e09a09a5bab732ba20a237c017_Kirche Totale 1 .JPG" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/fca3d7e09a09a5bab732ba20a237c017_Kirche Totale 1 .JPG" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/38163a27aead51639751543be6c2af2a_Bildschirmfoto 2018-07-22 um 12.27.21.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/38163a27aead51639751543be6c2af2a_Bildschirmfoto 2018-07-22 um 12.27.21.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/a9a683345f8c1a6dcf36450838236567_Bildschirmfoto 2018-07-22 um 11.45.13.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/a9a683345f8c1a6dcf36450838236567_Bildschirmfoto 2018-07-22 um 11.45.13.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/de2c667375d2102e6e7f1df14d9fda3b_P_20180718_133158_p.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/de2c667375d2102e6e7f1df14d9fda3b_P_20180718_133158_p.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/e4a3db56db5034e0af657deff6ba4296_P_20180718_132346_p.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/e4a3db56db5034e0af657deff6ba4296_P_20180718_132346_p.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/2894720273af2e31007dd6cd99768c36_P_20180715_165459_p.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/2894720273af2e31007dd6cd99768c36_P_20180715_165459_p.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/d933a7c4aa69843f0e79d067da48c659_P_20180715_182259_p.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/d933a7c4aa69843f0e79d067da48c659_P_20180715_182259_p.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/abf83e670f8203d842d570345ec3c867_P_20180715_174653_p.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/abf83e670f8203d842d570345ec3c867_P_20180715_174653_p.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/445181da0d18f99c54f3185a048a211e_P_20180718_145833_p_1.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/445181da0d18f99c54f3185a048a211e_P_20180718_145833_p_1.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/74de045a9ed7c267893bf6f998de3d6b_IMG-20180718-WA0024.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/74de045a9ed7c267893bf6f998de3d6b_IMG-20180718-WA0024.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/274a70423f182df54bc84ef12914c25f_P_20180718_132434_p.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/274a70423f182df54bc84ef12914c25f_P_20180718_132434_p.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/bc3a55649d16b4796f203b96296d91da_P_20180718_125758_p.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/bc3a55649d16b4796f203b96296d91da_P_20180718_125758_p.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/322ce0def8d196e69ca4d24ad31ee1b8_P_20180713_164855_p.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/322ce0def8d196e69ca4d24ad31ee1b8_P_20180713_164855_p.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/268d7cacf1bc6932b62f1c82665951cb_P_20180714_101858_p.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/268d7cacf1bc6932b62f1c82665951cb_P_20180714_101858_p.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/71a2e2a006e279e4c1981eb81a9b87ed_Bildschirmfoto 2018-07-22 um 12.13.54.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/71a2e2a006e279e4c1981eb81a9b87ed_Bildschirmfoto 2018-07-22 um 12.13.54.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/8dfac127794de4eb0ee77194bb328b81_Bildschirmfoto 2018-07-22 um 11.22.57.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/8dfac127794de4eb0ee77194bb328b81_Bildschirmfoto 2018-07-22 um 11.22.57.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/7b0044165524b49975aa146fee336ba6_Bildschirmfoto 2018-07-22 um 11.23.49.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/7b0044165524b49975aa146fee336ba6_Bildschirmfoto 2018-07-22 um 11.23.49.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/785cb3292a4295dc6d89fa2cd9ccf45a_Finn Freunde.JPG" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/785cb3292a4295dc6d89fa2cd9ccf45a_Finn Freunde.JPG" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/44f3d34ec5fcd893175cb7a1211b1cfb_P1040879.JPG" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/44f3d34ec5fcd893175cb7a1211b1cfb_P1040879.JPG" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/12a10a6e34b52139b80f51a935dfa770_P1040832.JPG" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/12a10a6e34b52139b80f51a935dfa770_P1040832.JPG" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/e40e12332b5947598c0a081ab5d2e11d_Bild Erstkommunion Juli 2018.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/e40e12332b5947598c0a081ab5d2e11d_Bild Erstkommunion Juli 2018.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/1d1406c3dc8bdca680a5228d847f9c00_a8342948fa94d58d537e4dc023b660ed_20170723_110035.jpg" rel="shadowbox[gallery_18];" title="July 2018"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/1d1406c3dc8bdca680a5228d847f9c00_a8342948fa94d58d537e4dc023b660ed_20170723_110035.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                        <!--END-->
+                        <!--start-->
+                        <div id="15">
+                            <div class="album_title" style="cursor: pointer; background-color: #E0E0E0; width: 100%; padding: 5px; font-weight: bold; margin-bottom: 10px;">First Holy communion - 9 photos<span class="show_hide" style="margin-left:10px; font-size: 10px;">(show)</span>
+                                <div style="color: gray; float: right; margin-right: 4px; font-size: 10px;">3rd January, 2018</div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="photos 15" style="margin: 0px 0px 20px 10px; ">
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/56cd9917c60285eb0c4086629bfef978_20170723_110028.jpg" rel="shadowbox[gallery_15];" title="First Holy communion"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/56cd9917c60285eb0c4086629bfef978_20170723_110028.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/664ad7d2ecaf172dd42ae0ec18ed44fb_20170723_111958.jpg" rel="shadowbox[gallery_15];" title="First Holy communion"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/664ad7d2ecaf172dd42ae0ec18ed44fb_20170723_111958.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/87fc0ddcf90ed48093d15927ec536406_20170723_112030.jpg" rel="shadowbox[gallery_15];" title="First Holy communion"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/87fc0ddcf90ed48093d15927ec536406_20170723_112030.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/f5d1435377a86e7475c0ffd0ad38360d_20170723_112218.jpg" rel="shadowbox[gallery_15];" title="First Holy communion"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/f5d1435377a86e7475c0ffd0ad38360d_20170723_112218.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/3af606656bf363466424c4d201849840_20170723_113000.jpg" rel="shadowbox[gallery_15];" title="First Holy communion"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/3af606656bf363466424c4d201849840_20170723_113000.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/5454041dc8cbae95d4e490c83c6a33b2_20170723_113014.jpg" rel="shadowbox[gallery_15];" title="First Holy communion"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/5454041dc8cbae95d4e490c83c6a33b2_20170723_113014.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/6aba092878f9f17fa15945e2ba3ccc86_20170723_113905.jpg" rel="shadowbox[gallery_15];" title="First Holy communion"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/6aba092878f9f17fa15945e2ba3ccc86_20170723_113905.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/9dededa8e603913f65144d7a192a08a7_20170723_113911.jpg" rel="shadowbox[gallery_15];" title="First Holy communion"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/9dededa8e603913f65144d7a192a08a7_20170723_113911.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/5d8e8b570b89e122146e198ee019ae73_20170723_114542.jpg" rel="shadowbox[gallery_15];" title="First Holy communion"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/5d8e8b570b89e122146e198ee019ae73_20170723_114542.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                        <!--END-->
+                        <!--start-->
+                        <div id="16">
+                            <div class="album_title" style="cursor: pointer; background-color: #E0E0E0; width: 100%; padding: 5px; font-weight: bold; margin-bottom: 10px;">July Mission 2017 - 36 photos<span class="show_hide" style="margin-left:10px; font-size: 10px;">(show)</span>
+                                <div style="color: gray; float: right; margin-right: 4px; font-size: 10px;">3rd January, 2018</div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="photos 16" style="margin: 0px 0px 20px 10px; ">
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/00dfc8de17e79c5438d0e0f17a594e29_20170723_134707.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/00dfc8de17e79c5438d0e0f17a594e29_20170723_134707.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/2c84066aa62df71b496baf4edce76c69_20170723_135019.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/2c84066aa62df71b496baf4edce76c69_20170723_135019.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/d6966e3f607769971e99e2c7f822d7e7_20170723_135211.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/d6966e3f607769971e99e2c7f822d7e7_20170723_135211.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/ee1ff4e4d1c3681cb2ed500751b82900_20170723_135409.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/ee1ff4e4d1c3681cb2ed500751b82900_20170723_135409.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/73087ec16b84e03a7bc04650c1eccf55_20170723_135758.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/73087ec16b84e03a7bc04650c1eccf55_20170723_135758.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/8d476e2c6e5a668f0f59097cab54a514_20170723_140105.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/8d476e2c6e5a668f0f59097cab54a514_20170723_140105.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/99b541d150a1f155617fe72911d65fed_20170723_140915.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/99b541d150a1f155617fe72911d65fed_20170723_140915.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/58812b23d91ef56cf8cdde3fffd48b8b_20170723_140920.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/58812b23d91ef56cf8cdde3fffd48b8b_20170723_140920.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/7461c88e22411a8f4b8959ec36374001_20170723_175902.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/7461c88e22411a8f4b8959ec36374001_20170723_175902.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/5126f5a588092f167638dc89d3f24119_20170723_175913.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/5126f5a588092f167638dc89d3f24119_20170723_175913.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/d417e83e661da09c0f54beab72db4923_20170723_175944.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/d417e83e661da09c0f54beab72db4923_20170723_175944.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/4a5a7ea7208de60a8c2aa4c0dfb15eac_20170723_175956.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/4a5a7ea7208de60a8c2aa4c0dfb15eac_20170723_175956.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/9031f1446d838d0d3235fa248288fbce_20170723_180046.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/9031f1446d838d0d3235fa248288fbce_20170723_180046.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/ac983ff1621ca0b63b28fe626a6932e8_20170723_180124.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/ac983ff1621ca0b63b28fe626a6932e8_20170723_180124.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/f28f8a798795b9dcb3c4bfdb14bfce60_20170723_180404.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/f28f8a798795b9dcb3c4bfdb14bfce60_20170723_180404.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/62f4df22f6eb160e762177ad5c0d6ce9_20170723_180413.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/62f4df22f6eb160e762177ad5c0d6ce9_20170723_180413.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/8d1787e65558e202cdb1498c09ba52e8_20170723_180512.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/8d1787e65558e202cdb1498c09ba52e8_20170723_180512.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/0fef584138b8e46a0b3396238d292e30_20170723_180804.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/0fef584138b8e46a0b3396238d292e30_20170723_180804.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/cb750e06342c6b763ce5392307d5cf37_20170723_180836.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/cb750e06342c6b763ce5392307d5cf37_20170723_180836.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/64c861ebdaf0f22fed15d7bbda54f71b_20170723_181536.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/64c861ebdaf0f22fed15d7bbda54f71b_20170723_181536.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/2aa597461c3ff12ed8665427ce5d2905_20170722_093307.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/2aa597461c3ff12ed8665427ce5d2905_20170722_093307.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/cd7a0299f357b43123a10305576b746c_20170722_093324.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/cd7a0299f357b43123a10305576b746c_20170722_093324.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/f10e0245aa3c54effc4b70f22a8f2e44_20170722_093355.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/f10e0245aa3c54effc4b70f22a8f2e44_20170722_093355.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/c8424a14e35c37f649be4168cb1f6780_20170722_094031.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/c8424a14e35c37f649be4168cb1f6780_20170722_094031.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/0b951922d2a5855a0562f5a489195e19_20170722_094035.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/0b951922d2a5855a0562f5a489195e19_20170722_094035.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/f0da1722f69293368ea7ce92faaff819_20170722_094100.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/f0da1722f69293368ea7ce92faaff819_20170722_094100.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/edac242d87e37ec9290b0696ac4c3cf3_20170722_100222.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/edac242d87e37ec9290b0696ac4c3cf3_20170722_100222.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/16e1b9b69e959d18681682115851b2d0_20170722_100315.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/16e1b9b69e959d18681682115851b2d0_20170722_100315.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/03577ffa712a08d72baf5d14b28bbb9e_20170722_100428.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/03577ffa712a08d72baf5d14b28bbb9e_20170722_100428.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/3c4f12cd21a67f80d08869d1787ee2bc_20170722_100440.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/3c4f12cd21a67f80d08869d1787ee2bc_20170722_100440.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/256a4d688c8b1151eda31513ca8529db_20170722_101519.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/256a4d688c8b1151eda31513ca8529db_20170722_101519.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/dc6bb84f4cfc541a53d362fb897aee01_20170722_101520.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/dc6bb84f4cfc541a53d362fb897aee01_20170722_101520.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/a91eb85670e2d9da6d63c71ca1b17d14_20170722_101621.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/a91eb85670e2d9da6d63c71ca1b17d14_20170722_101621.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/839ec9ab91f8526be687cd7d98905dd0_20170722_101638.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/839ec9ab91f8526be687cd7d98905dd0_20170722_101638.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/f4eb4d07f606e3de2e43d1bf71bfc737_20170722_102421.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/f4eb4d07f606e3de2e43d1bf71bfc737_20170722_102421.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/4fc2b447ba1ab850adc3de7a27f8c9a4_b.b.jpg" rel="shadowbox[gallery_16];" title="July Mission 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/4fc2b447ba1ab850adc3de7a27f8c9a4_b.b.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                        <!--END-->
+                        <!--start-->
+                        <div id="17">
+                            <div class="album_title" style="cursor: pointer; background-color: #E0E0E0; width: 100%; padding: 5px; font-weight: bold; margin-bottom: 10px;">Graduation - 17 photos<span class="show_hide" style="margin-left:10px; font-size: 10px;">(show)</span>
+                                <div style="color: gray; float: right; margin-right: 4px; font-size: 10px;">3rd January, 2018</div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="photos 17" style="margin: 0px 0px 20px 10px; ">
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/0c233c526b8cdf8328be1d3745b87e3b_1.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/0c233c526b8cdf8328be1d3745b87e3b_1.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/aff12f596b4057b831d32ddec4e9c97b_2.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/aff12f596b4057b831d32ddec4e9c97b_2.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/322b8a972b463272c01f3692f3256329_3.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/322b8a972b463272c01f3692f3256329_3.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/8217307ba86c20f8be08316ed882b0d5_4.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/8217307ba86c20f8be08316ed882b0d5_4.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/c21dabc2a2f2d862eef323089b76cf49_5.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/c21dabc2a2f2d862eef323089b76cf49_5.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/1902cb0c15d0ee76ec4ad5ebff81a335_6.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/1902cb0c15d0ee76ec4ad5ebff81a335_6.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/d9ab6486076749f98a8eb252a05e5a00_7.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/d9ab6486076749f98a8eb252a05e5a00_7.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/6fa1404780fe870b595f0e0a7aaee8ba_8.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/6fa1404780fe870b595f0e0a7aaee8ba_8.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/95344ffaf0cd78a6bbf83cc1094d032e_10.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/95344ffaf0cd78a6bbf83cc1094d032e_10.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/ce66c58d2197899637ddd23243616d92_11.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/ce66c58d2197899637ddd23243616d92_11.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/67a8c2ca5578ca0020fb74d97caf3546_12.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/67a8c2ca5578ca0020fb74d97caf3546_12.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/652a5549fdf64eb54138e2a2bf468f35_14.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/652a5549fdf64eb54138e2a2bf468f35_14.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/6f97676fc7b201a7be11f656091a4adb_15.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/6f97676fc7b201a7be11f656091a4adb_15.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/9a595c96a5985fe1a207340af2ca52d9_16.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/9a595c96a5985fe1a207340af2ca52d9_16.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/33816661c2766db3dfe1a729554ca2c7_17.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/33816661c2766db3dfe1a729554ca2c7_17.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/407d9460e19fc90f0bb0fcb1898615ba_18.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/407d9460e19fc90f0bb0fcb1898615ba_18.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/6434400d7dcbaf21583c82f9e28a3820_19.jpg" rel="shadowbox[gallery_17];" title="Graduation"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/6434400d7dcbaf21583c82f9e28a3820_19.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                        <!--END-->
+                        <!--start-->
+                        <div id="14">
+                            <div class="album_title" style="cursor: pointer; background-color: #E0E0E0; width: 100%; padding: 5px; font-weight: bold; margin-bottom: 10px;">Mission trip 2017 - 19 photos<span class="show_hide" style="margin-left:10px; font-size: 10px;">(show)</span>
+                                <div style="color: gray; float: right; margin-right: 4px; font-size: 10px;">2nd January, 2018</div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="photos 14" style="margin: 0px 0px 20px 10px; ">
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/a088ea0f6c2caee118a48809b4fdb3f7_Vanessa and me with children.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/a088ea0f6c2caee118a48809b4fdb3f7_Vanessa and me with children.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/5cc4be8b153748cfb247bfd4b5d9e387_Mary and Jon carrying flag.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/5cc4be8b153748cfb247bfd4b5d9e387_Mary and Jon carrying flag.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/46929b836e75a02302207cdcced3dc3d_Jon and bags for the kids.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/46929b836e75a02302207cdcced3dc3d_Jon and bags for the kids.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/fd9d2121d7ee0cebb9882c06bf76770b_Sr. Nancy teaching in classroom.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/fd9d2121d7ee0cebb9882c06bf76770b_Sr. Nancy teaching in classroom.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/7fdc7aca0b074d59d0a06a82ce015624_Dr. Kathy examining man.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/7fdc7aca0b074d59d0a06a82ce015624_Dr. Kathy examining man.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/16614176cf6ccdd5ae2855e5f1a0199a_Mission team at parish house Kiwamirembe.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/16614176cf6ccdd5ae2855e5f1a0199a_Mission team at parish house Kiwamirembe.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/aafcbc3bf52495618623152d0d4baa23_Maurice and Pam.jpeg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/aafcbc3bf52495618623152d0d4baa23_Maurice and Pam.jpeg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/2642836e696aea260628ec760bb4d7ec_f198405584.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/2642836e696aea260628ec760bb4d7ec_f198405584.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/fc90bfb2a66af31009180564e0737d7a_Mr AND MRS SEMATIKO.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/fc90bfb2a66af31009180564e0737d7a_Mr AND MRS SEMATIKO.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/3237bda1df5b5c0f6e25860326ad5fb3_Groundbraking for new classrooms.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/3237bda1df5b5c0f6e25860326ad5fb3_Groundbraking for new classrooms.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/8fac79ce3ba7e5ce756cd1168cdcc182_Quilt for St. Philomena School.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/8fac79ce3ba7e5ce756cd1168cdcc182_Quilt for St. Philomena School.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/e6caa4119ee4c74b359779bb65f187e1_Mission team equator.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/e6caa4119ee4c74b359779bb65f187e1_Mission team equator.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/44f8e2cfb47ee61599eb2b7f529a71d5_Nicole coaching.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/44f8e2cfb47ee61599eb2b7f529a71d5_Nicole coaching.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/41f7aeb7c2c840fd2e7a9d15c3c13a2d_Nancy und Schuhe.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/41f7aeb7c2c840fd2e7a9d15c3c13a2d_Nancy und Schuhe.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/0c55131b8b6d8365549af5983845a3d7_Schuhe sortieren.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/0c55131b8b6d8365549af5983845a3d7_Schuhe sortieren.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/897aef9a52d96e000b7ce64b116cf1dc_Gedenktafel fuÌˆr das Mary Mission Team.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/897aef9a52d96e000b7ce64b116cf1dc_Gedenktafel fuÌˆr das Mary Mission Team.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/f923d3823e6e11fbf5e7c337412788f9_pupils before temp classroom.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/f923d3823e6e11fbf5e7c337412788f9_pupils before temp classroom.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/6396833044d0715d7175874390c86178_Gruppe Kinder Erstkommunion Queen of  Peace church.jpg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/6396833044d0715d7175874390c86178_Gruppe Kinder Erstkommunion Queen of  Peace church.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/8aab847a48c0eeae00450a58a4040385_St. Philomena primary and nursery shool.jpeg" rel="shadowbox[gallery_14];" title="Mission trip 2017"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/8aab847a48c0eeae00450a58a4040385_St. Philomena primary and nursery shool.jpeg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                        <!--END-->
+                        <!--start-->
+                        <div id="13">
+                            <div class="album_title" style="cursor: pointer; background-color: #E0E0E0; width: 100%; padding: 5px; font-weight: bold; margin-bottom: 10px;">Visit - 19 photos<span class="show_hide" style="margin-left:10px; font-size: 10px;">(show)</span>
+                                <div style="color: gray; float: right; margin-right: 4px; font-size: 10px;">2nd July, 2016</div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="photos 13" style="margin: 0px 0px 20px 10px; ">
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/05663d3fe0a096e1cf69d2da595c48fd_20160702_094747.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/05663d3fe0a096e1cf69d2da595c48fd_20160702_094747.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/74553c97aeb3f9da4b3815a21baf29e8_20160702_100200.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/74553c97aeb3f9da4b3815a21baf29e8_20160702_100200.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/e27e8ce3d969611694fc90cb3b4e3590_20160702_151553.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/e27e8ce3d969611694fc90cb3b4e3590_20160702_151553.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/79ee69dc2adb2a37da0c66cf2aa27ad6_20160715_092217.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/79ee69dc2adb2a37da0c66cf2aa27ad6_20160715_092217.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/bf5c6706b14a87df9e3bf830eb3d5e2a_20160715_092230.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/bf5c6706b14a87df9e3bf830eb3d5e2a_20160715_092230.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/d29d3e9624c832d67af2de7757e6e39a_20160715_132609.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/d29d3e9624c832d67af2de7757e6e39a_20160715_132609.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/1c4090ec7e6b1a7f28b7f286ba04de6f_20160716_103249.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/1c4090ec7e6b1a7f28b7f286ba04de6f_20160716_103249.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/7b7a9b6748284b706d558f31baa601e1_20160716_143715.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/7b7a9b6748284b706d558f31baa601e1_20160716_143715.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/a8d205d44d05f22dfd6946082ad290ca_20160716_143719.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/a8d205d44d05f22dfd6946082ad290ca_20160716_143719.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/0fe0e5c22a2664e002b28d54672d9e5f_20160716_143757.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/0fe0e5c22a2664e002b28d54672d9e5f_20160716_143757.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/f62b56d8f18d237cca3c47e649612bb2_20160716_143933.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/f62b56d8f18d237cca3c47e649612bb2_20160716_143933.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/8f3674ef92515632985bf30799592592_20160717_130754.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/8f3674ef92515632985bf30799592592_20160717_130754.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/159cebc1ba947cb05b6356f96c7e9244_20160717_130759.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/159cebc1ba947cb05b6356f96c7e9244_20160717_130759.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/57380d512b2187d3873bfd74f197ebc1_20160717_130809.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/57380d512b2187d3873bfd74f197ebc1_20160717_130809.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/8b5d9dabefb7fc98c3ab38026b5bc959_20160717_134243.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/8b5d9dabefb7fc98c3ab38026b5bc959_20160717_134243.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/634a00d3c75d5537038a1c4c8f4f18fe_20160717_134342.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/634a00d3c75d5537038a1c4c8f4f18fe_20160717_134342.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/fd61566a6acc404e981fdd5c482a4817_20160717_134403.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/fd61566a6acc404e981fdd5c482a4817_20160717_134403.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/97788b3f76e5d909af176b47189e5bd9_20160717_134417.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/97788b3f76e5d909af176b47189e5bd9_20160717_134417.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/426a5f6dd22212f7b4c0d408e973a175_20160717_134427.jpg" rel="shadowbox[gallery_13];" title="Visit"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/426a5f6dd22212f7b4c0d408e973a175_20160717_134427.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                        <!--END-->
+                        <!--start-->
+                        <div id="12">
+                            <div class="album_title" style="cursor: pointer; background-color: #E0E0E0; width: 100%; padding: 5px; font-weight: bold; margin-bottom: 10px;">Pictorial - 34 photos<span class="show_hide" style="margin-left:10px; font-size: 10px;">(show)</span>
+                                <div style="color: gray; float: right; margin-right: 4px; font-size: 10px;">22nd September, 2015</div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div class="photos 12" style="margin: 0px 0px 20px 10px; ">
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/e85eb5b13ecf134df1312c41f25ccf30_2ac989f99bb5b2c30928867dd7d91693_12.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/e85eb5b13ecf134df1312c41f25ccf30_2ac989f99bb5b2c30928867dd7d91693_12.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/f35a868f63750335eb501caa8ecad872_3ccf2f29f82ded0016d210c2e3463c8b_X.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/f35a868f63750335eb501caa8ecad872_3ccf2f29f82ded0016d210c2e3463c8b_X.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/21a23b52a767e9e29c982d45bb77a32f_6b20cb693ecca830ae94056d9a931ce2_O.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/21a23b52a767e9e29c982d45bb77a32f_6b20cb693ecca830ae94056d9a931ce2_O.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/cba2934665746ca9b382f4916d7802dd_7a0d7ecd8387845a64a48700a42fac5b_28.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/cba2934665746ca9b382f4916d7802dd_7a0d7ecd8387845a64a48700a42fac5b_28.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/f949dc1c7d7749033e462a25a90fdf0e_8a2e1f69959c8c93b5f874df1b81aded_1.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/f949dc1c7d7749033e462a25a90fdf0e_8a2e1f69959c8c93b5f874df1b81aded_1.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/269e9e88d8134ff18f0ba5750477f804_8d233751230df5a5f943a637d4c6a136_A.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/269e9e88d8134ff18f0ba5750477f804_8d233751230df5a5f943a637d4c6a136_A.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/1db79339a65fb443d2c140c0afbfdb72_9c243012f186d653b3deca14d7549eb8_T.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/1db79339a65fb443d2c140c0afbfdb72_9c243012f186d653b3deca14d7549eb8_T.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/9d43a243d22bb612569d5f9065b396d3_40e0d252e44f92bb9f7ad0924339319c_19.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/9d43a243d22bb612569d5f9065b396d3_40e0d252e44f92bb9f7ad0924339319c_19.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/7108e1a11f3c338b51869d3380b6e3f1_818a87c0ff9db4e037ecce8666578faf_W.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/7108e1a11f3c338b51869d3380b6e3f1_818a87c0ff9db4e037ecce8666578faf_W.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/731996329f629c7c51baa791b2ca8d99_1085a54294f82a72f4ae72ebf1784a2d_24.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/731996329f629c7c51baa791b2ca8d99_1085a54294f82a72f4ae72ebf1784a2d_24.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/d76ecf4c7427aa1fdd8a004ec04c4ca2_5651dc2a51b98c7ca3a6439995710ad6_9.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/d76ecf4c7427aa1fdd8a004ec04c4ca2_5651dc2a51b98c7ca3a6439995710ad6_9.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/8f963e326009ca84530c38bd55ca7d4b_07122a20b494599db5c79966729fbaf8_1.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/8f963e326009ca84530c38bd55ca7d4b_07122a20b494599db5c79966729fbaf8_1.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/6382eec812aea9ed242fc54270f1a6c9_8440f420eb896af2350b2a82770fbd90_I.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/6382eec812aea9ed242fc54270f1a6c9_8440f420eb896af2350b2a82770fbd90_I.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/351ea0d1569c895bb238030b058e22e8_8951adb377334f0eea7138262d4f6598_G.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/351ea0d1569c895bb238030b058e22e8_8951adb377334f0eea7138262d4f6598_G.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/6c7ca6efdc49fae6d09a965fade13b6a_09841ba2c0583998b9394cadd226d626_5.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/6c7ca6efdc49fae6d09a965fade13b6a_09841ba2c0583998b9394cadd226d626_5.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/9d70d8ced5a46b1b9e6e9dc2a7381486_4735368f087be477ad149e1d4770003e_10.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/9d70d8ced5a46b1b9e6e9dc2a7381486_4735368f087be477ad149e1d4770003e_10.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/24dd4765a2e3299be6eb6a6600e05d0a_279458871bf0dfa0e97a9ff8110d8fc3_2.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/24dd4765a2e3299be6eb6a6600e05d0a_279458871bf0dfa0e97a9ff8110d8fc3_2.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/52a95aea9d47d6ecfa9bc65ec1d657ed_10790018421017ad1fadcd0bd9e55af0_27.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/52a95aea9d47d6ecfa9bc65ec1d657ed_10790018421017ad1fadcd0bd9e55af0_27.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/4cbb81e0791833552a9c98ca4c0c52dc_abc.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/4cbb81e0791833552a9c98ca4c0c52dc_abc.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/dea560ac38c3eb07c4c9e07cc7ec31f1_def.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/dea560ac38c3eb07c4c9e07cc7ec31f1_def.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/b105445f14758b0d67dd814e6a4437e3_kk.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/b105445f14758b0d67dd814e6a4437e3_kk.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/7638076d8e5a691bff146eac0c92ecc7_z1.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/7638076d8e5a691bff146eac0c92ecc7_z1.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/b2d159895a89b49e546a259de8aec49a_z2.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/b2d159895a89b49e546a259de8aec49a_z2.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/40bfca41e83e49c35e0ce2c36de8cab0_z3.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/40bfca41e83e49c35e0ce2c36de8cab0_z3.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/de74d4369f2d2a51216cc666d1f481bc_z4.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/de74d4369f2d2a51216cc666d1f481bc_z4.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/f9f0ce0f101854120e0ed8af93e669f7_z5.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/f9f0ce0f101854120e0ed8af93e669f7_z5.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/dc313aa5fdc0b835ac4125b0f95b45a9_z6.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/dc313aa5fdc0b835ac4125b0f95b45a9_z6.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/bdc00d50925a081cac76a881859b1654_b1.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/bdc00d50925a081cac76a881859b1654_b1.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/6f7d635cd026c7dfc66d79a6b0d8f36a_b2.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/6f7d635cd026c7dfc66d79a6b0d8f36a_b2.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/eaf670ede5ae5b7c2facdbacfb58c6cc_b3.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/eaf670ede5ae5b7c2facdbacfb58c6cc_b3.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/616257d19ddcdb8d173d24b66a8ad177_b4.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/616257d19ddcdb8d173d24b66a8ad177_b4.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/a7c35d5fbdf6d2d45de064e2f98fe87d_b5.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/a7c35d5fbdf6d2d45de064e2f98fe87d_b5.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/9bdb42bb0027e682ecdc9090d96463e3_b6.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/9bdb42bb0027e682ecdc9090d96463e3_b6.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="float: left; padding:3px;">
+                                    <a href="graphics/photo_gallery/before_cropping/2a97236c9bb39bafb8820f20261c6b32_kkb.jpg" rel="shadowbox[gallery_12];" title="Pictorial"><img style="padding: 3px;" src="graphics/photo_gallery/after_cropping/2a97236c9bb39bafb8820f20261c6b32_kkb.jpg" /></a>
+
+                                    <!--<div style="background-color: #E0E0E0; padding: 3px;"></div>-->
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                        </div>
+                        <!--END-->
+                        <!-- END GALLERY -->
+
+                    </div>
+                </div>
+
+                <div id="homepageright"></div>
+
+            </div>
+
+            <!-- begin sidebar -->
+
+            <div id="sidebar">
+
+                <ul id="sidebarwidgeted">
+
+                    <li id="text-405101421" class="widget widget_text">
+
+                        <!--<h2 class="widgettitle" style="background-color:#FF9900;"><a href="page.html" style="color:#FFFFFF">WHAT $25 CAN DO FOR A CHILD</h2>-->
+
+                        <div class="textwidget" style="text-align: center;font-size:12px;">
+                            <a href="volunteer.php"><!--<img src="graphics/sponsor-a-child-today.jpg" border="0" />-->VOLUNTEER</a>&nbsp; | &nbsp;<a href="contact_us.php?p=1"><!--<img src="graphics/sponsor-a-child-today.jpg" border="0" />-->PARTNER WITH US</a>&nbsp;
+                            | &nbsp;<a href="donate.php"><!--<img src="graphics/sponsor-a-child-today.jpg" border="0" />-->DONATE</a></div>
+                    </li>
+
+
+                    <li id="global-translator" class="widget widget_global_translator">
+                        <h2 class="widgettitle" style="background-color:#669922;"> FEATURED CHILD | <a href="sponsor_a_child.php" style="color:#FFFFFF; text-transform: none;">See all Children</a></h2>
+
+                        <!--FLAG_BAR_BEGIN-->
+                        <a href="child_information.php?cid=553"><img src="graphics/children_images/553_8.JPG" style="width: 300px;" border="0"/></a>
+                        <p style="font-size: 14px; margin-top: 5px;">SHEIRA NANKINDU , 10</p>
+                        <!--FLAG_BAR_END-->
+                    </li>
+                    <!--<li id="text-371685491" class="widget widget_text">
+<div class="textwidget">
+<h2 class="widgettitle" style="background-color:#669922;"> NEWS</h2>		
+<script type="text/javascript">
+
+
+new pausescroller(pausecontent, "pscroller1", "someclass", 10000)
+
+</script>
+</div></li>-->
+
+                    <li id="global-translator" class="widget widget_global_translator">
+                        <!--<h2 class="widgettitle" style="background-color:#669922;"> FEATURED CHILD | <a href="children.php" style="color:#FFFFFF; text-transform: none;">See all Children</a></h2>-->
+
+                        <!--FLAG_BAR_BEGIN-->
+                        <a href="proposed_school.php"><img src="graphics/proposed_school_icon.png" border="0"/></a>
+
+                        <!--FLAG_BAR_END-->
+                    </li>
+
+                    <li id="global-translator" class="widget widget_global_translator">
+                        <h2 class="widgettitle" style="background-color:#669922;"><a href="https://www.youtube.com/channel/UCYEk_3q3WH7mc0ynleseICA" style="color:#FFFFFF;" target="_blank">VIDEOS</a></h2>
+
+                        <!--FLAG_BAR_BEGIN-->
+                        <iframe width="300" height="230" src="https://www.youtube.com/embed/Nz9meu_wRPM" frameborder="0" allowfullscreen></iframe><br/><br/>
+
+                        <iframe width="300" height="230" src="https://www.youtube.com/embed/m31byl8TxE8" frameborder="0" allowfullscreen></iframe>
+
+                        <!--FLAG_BAR_END-->
+                    </li>
+
+                    <li id="global-translator" class="widget widget_global_translator">
+                        <!--<h2 class="widgettitle" style="background-color:#669922;"> FEATURED CHILD | <a href="children.php" style="color:#FFFFFF; text-transform: none;">See all Children</a></h2>-->
+
+                        <!--FLAG_BAR_BEGIN-->
+                        <a href="testimonies"><img src="graphics/testimonies.png" border="0"/></a>
+
+                        <!--FLAG_BAR_END-->
+                    </li>
+
+
+                    <li id="text-405101423" class="widget widget_text">
+                        <h2 class="widgettitle" style="background-color:#669922;"> FOLLOW US:</h2>
+                        <div class="textwidget">
+                            <div class="fb-page" data-href="https://www.facebook.com/GreenVillageChildrenCenter" data-width="307" data-height="200" data-hide-cover="true" data-show-facepile="true" data-show-posts="false">
+                                <div class="fb-xfbml-parse-ignore">
+                                    <blockquote cite="https://www.facebook.com/GreenVillageChildrenCenter"><a href="https://www.facebook.com/GreenVillageChildrenCenter">Green Village Children Center</a></blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <div class="fw_tabs_tabs_surround" id="fw_tabs_tabs_surround_1">
+                        <div id="fw_tabs_tabdisplay_x_1" class="fw_tabs_tabdisplay first">
+                            <ul class="tabbed_sidebar"></ul>
+                            <div>&nbsp;</div>
+                        </div>
+                    </div>
+                </ul>
+
+                <!-- begin l_sidebar -->
+
+                <div id="l_sidebar">
+                    <ul id="l_sidebarwidgeted">
+
+
+
+
+
+                    </ul>
+
+                </div>
+
+                <!-- end l_sidebar -->
+                <!-- begin r_sidebar -->
+
+                <div id="r_sidebar">
+
+                    <ul id="r_sidebarwidgeted">
+
+
+
+
+
+
+                    </ul>
+
+                </div>
+
+                <!-- end r_sidebar -->
+            </div>
+
+            <!-- end sidebar -->
+        </div>
+
+        <!-- The main column ends  -->
+
+        <!-- begin footer -->
+
+        <div style="clear:both;"></div>
+
+        <div id="footer">
+
+            <p>Copyright @
+                <script type="text/javascript">
+                    var mdate = new Date();
+                    document.write(mdate.getFullYear());
+                </script>
+                Green Village Children Center | <span><a href="contact_us.php" style="color:#FFF; font-weight:bold; padding-right:4px;">Contact Us</a></span> | <span><a href="terms_and_conditions.php" style="color:#FFF; font-weight:bold; padding-right:4px;" >Terms and Conditions</a></span>                | <span><a href="signin.php" style="color:#FFF; font-weight:bold; padding-right:4px;" target="_blank" >Admin</a></span> | <span><a href="http://greenvillagechildrencenter.org/webmail/" target="_blank" style="color:#FFF; font-weight:bold; padding-right:4px;" >Webmail</a></span>
+
+                <span style="float:right">
+    Developed by  <a href="http://safari256.com" target="_blank" style="color:#FFF; font-weight:bold; padding-right:4px;" >Safari256</a></span></p>
+
+        </div>
+
+        <div id="wp-admin-bar">
+            <div class="padder"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
